@@ -1,4 +1,4 @@
-# Virtual Studiolo test
+# IDEA Studiolo: porting su ATON
 
 ## come eseguirlo
 - installare Node
