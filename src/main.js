@@ -7,7 +7,8 @@ let APP = ATON.App.realize();
 window.APP = APP;
 
 // This is our assets root folder
-APP.assetsPath = APP.basePath + "content/";
+//APP.assetsPath = APP.basePath + "content/";  //SIL:  APP.basePath==undefined
+APP.assetsPath = "/a/studiolo/content/";
 
 // Tell ATON to look for 3D content here
 ATON.setPathCollection(APP.assetsPath);
@@ -24,7 +25,9 @@ APP.setup = ()=>{
 
     ATON.FE.realize(); // Realize the base front-end
 	ATON.FE.addBasicLoaderEvents(); // Add basic events handling
-
+    
+    ATON.createSceneNode("demo").load("virtual_studiolo_boxes.glb").attachToRoot(); // SIL
+    
     APP.setupUI();
 
     APP.currMode = APP.MODE_FP;
