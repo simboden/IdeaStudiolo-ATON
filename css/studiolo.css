@@ -1,0 +1,138 @@
+/* ==== panels sizes initial values ==== */
+:root {
+    --toolbar-h:   40px;
+    --catalogue-w: 0px;
+    --timebar-h:   0px;
+    --lighting-h:  0px;
+}
+
+/* ==== overriding aton.css ==== */ 
+#idView3D  { 
+    position:absolute;
+    left:   0px !important;   
+    top:    var(--toolbar-h) !important;   
+    width:  calc( 100% - var(--catalogue-w)) !important;   
+    height: calc( 100% - var(--toolbar-h) - var(--timebar-h) - var(--lighting-h)) !important;   
+}
+/* ==== overriding aton.css ==== */ 
+.poweredBy {
+    bottom: calc( var(--timebar-h) + var(--lighting-h) ) !important;
+}
+
+/* ==== ui panels ==== */ 
+.panel { 
+    display:block; 
+    position:absolute; 
+}
+#menu-panel    { 
+    left:0px;   
+    top:0px;   
+    padding: 3px;
+    z-index:100; 
+}
+#toolbar-panel    { 
+    background-color:#000;  
+    left:       0px;   
+    top:        0px;   
+    width:      100%;    
+    height:     var(--toolbar-h);
+    padding:    4px;
+    overflow:   hidden;
+}
+#exit-closeup-panel {
+    left:   calc( 100% / 2 - 100px );
+    top:    50px;   
+    width:  200px;
+    z-index:101; 
+}   
+#catalogue-panel { 
+    left:   calc( 100% - var(--catalogue-w));
+    top:    var(--toolbar-h);   
+    width:  var(--catalogue-w);
+    height: calc( 100% - var(--toolbar-h));
+    overflow-y: scroll;
+}
+#map-panel       { 
+    left:   calc( 100% - var(--catalogue-w) - 330px );   
+    top:    calc( var(--toolbar-h) + 30px );   
+    width:  300px;    
+    height: 300px;  
+    z-index:100; 
+}
+#timebar-panel   { 
+    background-color:#444;   
+    left:   0px;   
+    top:    calc( 100% - var(--timebar-h) - var(--lighting-h) );
+    width:  calc( 100% - var(--catalogue-w));
+    height: var(--timebar-h);
+}
+#lighting-panel  { 
+    background-color:#000; 
+    left:   0px;   
+    top:    calc( 100% - var(--lighting-h));
+    width:  calc( 100% - var(--catalogue-w));
+    height: var(--lighting-h);                
+    padding: 4px;
+}
+#help-panel {
+    position: absolute;
+    top : 0px;
+    left : 0px;
+    width : 100%;
+    min-height : 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index : 103;
+
+    /* center contents */
+    /* https://www.freecodecamp.org/news/how-to-center-an-image-in-css/ */
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+/* ==== general ==== */
+.icon {
+    font-size       : 0;
+    width           : 20px;
+    height          : 20px;
+}    
+.btn {
+    border-radius   : 0px;
+    margin-left     : 5px;
+    margin-right    : 5px;
+} 
+.logo { 
+    color           :#DDD;
+    font-weight     : bold;
+}   
+
+/* ==== catalogue ==== */
+.cat-li {
+    margin-top      : 10px; 
+}
+.cat-li h5 {
+    font-weight     : 400;
+}
+.cat-li div {
+    font-size       : 14px;
+    padding-right   : 5px;
+}
+.cat-li a {
+    padding-left    : 5px;
+    padding-right   : 5px;
+    text-decoration : none;
+}
+.cat-references-div {
+    padding-top     : 8px;
+}
+.cat-inventory {
+    padding-top     : 8px;
+    font-weight     : 600;
+}
+.cat-references {
+    font-weight     : 600;
+}
+.cat-transcription {
+    padding-bottom  : 5px;
+    font-style      : italic;
+}
