@@ -27,7 +27,11 @@ APP.POV_HOME = new ATON.POV().setPosition(-1.8,1.6,-1.0).setTarget(-1.8, 0.8, -6
 APP.setup = ()=>{
     console.log( APP.assetsPath );
 
+    //SIL overriding ATON._onResize -- must be befeore Realize
+    ATON._onResize = onResize
+
     ATON.FE.realize(); // Realize the base front-end
+
 	ATON.FE.addBasicLoaderEvents(); // Add basic events handling
     APP.setupEvents();
     
@@ -66,7 +70,8 @@ APP.setupEvents = ()=>{
 
 // Setup HTML UI
 APP.setupUI = ()=>{
-
+    attachEventListener() 
+    fillCatalogue() 
 };
 
 APP.changeInteractionMode = (mode)=>{
@@ -85,13 +90,9 @@ APP.changeInteractionMode = (mode)=>{
     APP.currMode = mode;
 };
 
-/* APP.update() if you plan to use an update routine (executed continuously)
+/* APP.update() if you plan to use an update routine (executed continuously) */
 APP.update = ()=>{
-
 };
-*/
-
-
 
 // Run the App
 window.addEventListener('load',()=>{

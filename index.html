@@ -1,49 +1,63 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<link rel="icon" href="appicon.png" sizes="512x512" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="appicon.png" sizes="512x512" type="image/png">
 
-<!-- Add iOS meta tags and icons -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Hathor">
-<link rel="apple-touch-icon" href="appicon.png">
+    <!-- Add iOS meta tags and icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hathor">
+    <link rel="apple-touch-icon" href="appicon.png">
 
-<meta name="description" content="Studiolo">
+    <meta name="description" content="Studiolo">
 
-<!-- OpenGraph tags -->
-<meta property="og:title" content="Studiolo" />
-<meta property="og:description" content="Studiolo" />
-<meta property="og:image" content="appicon.png" />
-<meta property="og:image:secure_url" content="appicon.png" /> 
-<meta property="og:image:type" content="image/png" /> 
-<meta property="og:image:width" content="200" /> 
-<meta property="og:image:height" content="200" />
+    <!-- OpenGraph tags -->
+    <meta property="og:title" content="Studiolo" />
+    <meta property="og:description" content="Studiolo" />
+    <meta property="og:image" content="appicon.png" />
+    <meta property="og:image:secure_url" content="appicon.png" /> 
+    <meta property="og:image:type" content="image/png" /> 
+    <meta property="og:image:width" content="200" /> 
+    <meta property="og:image:height" content="200" />
 
-<!-- PWA manifest -->
-<link rel="manifest" href="app.webmanifest">
+    <!-- PWA manifest -->
+    <link rel="manifest" href="app.webmanifest">
 
-<!-- Add meta theme-color -->
-<meta name="theme-color" content="#000000" />
+    <!-- Add meta theme-color -->
+    <meta name="theme-color" content="#000000" />
 
-<title>Studiolo App</title>
-<link rel="stylesheet" type="text/css" href="/res/css/aton.css">
+    <!-- Title -->
+    <title>TEST Studiolo App</title>
 
-<!-- Vendors -->
-<script type="text/javascript" src="/vendors/vendors.min.js"></script>
-<script type="text/javascript" src="/dist/THREE.bundle.js"></script>
-<script type="text/javascript" src="/dist/ATON.min.js"></script>
+    <!-- Vendors -->
+    <script type="text/javascript" src="/vendors/vendors.min.js"></script>
+    <script type="text/javascript" src="/dist/THREE.bundle.js"></script>
 
-<!-- Main js entry -->
-<script type="text/javascript" src="src/main.js"></script>
+    <!-- Aton -->
+    <link rel="stylesheet" type="text/css" href="/res/css/aton.css">
+    <script type="text/javascript" src="/dist/ATON.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Studiolo -->
+    <link rel="stylesheet" type="text/css" href="css/studiolo.css">
+    <script type="text/javascript" src="js/studiolo_artworks.js"></script>
+    <script type="text/javascript" src="js/studiolo.js"></script>
+
+    <!-- Main js entry -->
+    <script type="text/javascript" src="src/main.js"></script>
+    
 </head>
 
-<body>
+<body data-bs-theme="dark">
+
 
     <!-- Top Toolbar -->
     <div id="idTopToolbar" class="atonToolbar atonToolbar-top-left scrollableX"></div>
@@ -58,4 +72,102 @@
     <div id='idPoweredBy' class="poweredBy" >
         Powered by <a href="http://osiris.itabc.cnr.it/aton/" target="_blank">ATON</a>
     </div>
+
+
+
+
+    <!--- MENU BUTTON -->
+    <div id="menu-panel" class="panel" >
+        <button id="menu-btn"          type="button" class="btn btn-sm btn-primary"><img class="icon icon2" src='images/menu.svg' /></button>
+    </div>
+
+    <!--- TOOLBAR PANEL -->
+    <div id="toolbar-panel" class="panel" >
+
+        <button id="menu2-btn"          type="button" class="btn btn-sm btn-dark">    <img class="icon icon2" src='images/menu.svg'   /> </button>
+
+        <span class="logo" > IDEA Studiolo</span>
+
+        <button id="first-person-btn"   type="button" class="btn btn-sm btn-dark"> first person </button>
+        <button id="third-person-btn"   type="button" class="btn btn-sm btn-dark"> third person </button>
+        <button id="map-btn"            type="button" class="btn btn-sm btn-dark"> map          </button>
+        <button id="catalogue-btn"      type="button" class="btn btn-sm btn-dark"> catalogue    </button>
+        <button id="timebar-btn"        type="button" class="btn btn-sm btn-dark"> timebar      </button>
+        <button id="lighting-btn"       type="button" class="btn btn-sm btn-dark"> lightining   </button>
+        <button id="annotations-btn"    type="button" class="btn btn-sm btn-dark"> notes        </button>
+        <button id="measure-btn"        type="button" class="btn btn-sm btn-dark"> measures     </button>
+        <button id="fullscreen-btn"     type="button" class="btn btn-sm btn-dark"> full screen  </button>
+        <button id="help-btn"           type="button" class="btn btn-sm btn-dark"> help         </button>
+        <button id="reset-btn"          type="button" class="btn btn-sm btn-dark"> reset        </button>
+
+    </div>
+
+    <!--- CANVAS PANEL -->
+    <div id="canvas-panel" class="panel" hidden >canvas</div>
+
+    <!--- EXIT CLOSEUP PANEL -->
+    <div id="exit-closeup-panel"  class="panel" hidden>
+        <button id="exit-closeup-btn"  type="button" class="btn btn-sm btn-primary" ><img class="icon" src='images/close.svg' />exit closeup mode </button>
+    </div>
+
+    <!--- MAP PANEL -->
+    <div id="map-panel" class="panel" hidden>
+        <svg height="300" width="300">
+            <g transform="translate(275,240) scale(-30,30) rotate(180) ">
+              <path d="M -0.09,0.02 -1.37,0.02 -1.37,-0.57 -2.13,-0.57 -2.13,0.02 -3.51,0.02 -3.51,2.53 -4.06,2.53 -4.06,0.58 -7.32,0.58 -7.32,5.15 -6.59,5.15 -6.59,6.68 -6.48,7.00 -4.95,7.00 -4.83,6.68 -4.83,5.15 -4.06,5.15 -4.06,3.25 -3.51,3.25 -3.51,6.48 -2.91,6.48 -2.64,6.90 -1.02,6.90 -0.75,6.48 -0.09,6.48 z"
+              style="fill:none; stroke:white; stroke-width:0.1; stroke-linejoin:round;" />
+              <polygon id="map_cursor" style="fill:red; stroke:white;stroke-width:0.05; stroke-linejoin:round;stroke-linecap:round" points="0.2,0 0,0.3 1,0 0,-0.3" transform="translate(0,0) rotate(0)" />
+            </g>
+            <text style="font-size:16px;font-family:sans-serif; fill:white;">
+              <tspan x="80"  y="150" >Grotta</tspan>
+              <tspan x="195" y="150" >Studiolo</tspan>
+              <tspan x="75"  y="20"  >window</tspan>
+              <tspan x="195" y="20"  >window</tspan>
+              <tspan x="195" y="285" >entrance</tspan>
+            </text>
+            <g>
+            <text style="font-size:14px;font-family:sans-serif; fill:white;">
+              <tspan x="110" y="275" >N</tspan>
+              <tspan x="80"  y="275" >e</tspan>
+              <tspan x="110" y="250" >w</tspan>
+              <tspan x="80"  y="250" >s</tspan>
+            </text>
+            </g>
+            <g transform="translate(-120,220)">
+             <path d="m 215,30,13,16"       style="stroke:white;stroke-width:1.25" />
+             <path d="m 213,43,15,-11"       style="stroke:white;stroke-width:1.25" />
+             <circle cx="220" cy="37" r="6" style="fill:none;stroke:white;stroke-width:1;" />
+            </g>
+          </svg>
+    </div>
+
+    <!--- CATALOGUE PANEL -->
+    <div id="catalogue-panel"   class="panel" hidden>catalogue</div>
+
+    <!--- TIMEBAR PANEL -->
+    <div id="timebar-panel"     class="panel" hidden>timebar</div>
+
+    <!--- LIGHTING PANEL -->
+    <div id="lighting-panel"    class="panel" hidden >
+        <span style="margin:10px; color:white; width:100px;" >time of day :</span>
+        <button id="light-time0"   type="button" class="btn btn-sm btn-dark" >9:00 am</button>
+        <button id="light-time1"   type="button" class="btn btn-sm btn-dark" >12:00 am</button>
+        <button id="light-time2"   type="button" class="btn btn-sm btn-dark" >3:00 pm </button>
+        <button id="light-time3"   type="button" class="btn btn-sm btn-dark" >6:00 pm</button>
+
+        <span style="margin:10px; color:white; width:100px;" >season :</span>
+        <button id="light-season0" type="button" class="btn btn-sm btn-dark" >spring</button>
+        <button id="light-season1" type="button" class="btn btn-sm btn-dark" >summer</button>
+        <button id="light-season2" type="button" class="btn btn-sm btn-dark" >autumn</button>
+        <button id="light-season3" type="button" class="btn btn-sm btn-dark" >winter</button>
+    </div>
+
+    <!--- HELP PANEL -->
+    <div id="help-panel" hidden >
+        <img src="images/studiolo_help.svg" width="520px" height="440px" />
+    </div>
+
+</script>
 </body>
+
+

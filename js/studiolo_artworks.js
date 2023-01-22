@@ -10,23 +10,15 @@
 
 // --- artwork kind
 const artwork_kind = {
-'F' : 'forniture',
-'P' : 'painting',
-'S' : 'statuette',
-'M' : 'medals and coins',
-'D' : 'decorative elem.',
-'A' : 'architecture elem.',
-'G' : 'gems and jewels',
-'X' : 'space' }
-
-// FURNITURE   = 'F'
-// PAINTING  = 'P'
-// STATUETTE  = 'S'
-// MEDAL = 'M'
-// DECORATIVE = 'D'
-// ARCHITECTURE = 'A'
-// GEMSJEWELS = 'G'
-// SPACE = 'X'
+    'F' : 'forniture',
+    'P' : 'painting',
+    'S' : 'statuette',
+    'M' : 'medals and coins',
+    'D' : 'decorative elem.',
+    'A' : 'architecture elem.',
+    'G' : 'gems and jewels',
+    'X' : 'space' 
+}
 
 // -- reference type
 // BOOK = 'B'
