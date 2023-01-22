@@ -27,8 +27,10 @@ APP.POV_HOME = new ATON.POV().setPosition(-1.8,1.6,-1.0).setTarget(-1.8, 0.8, -6
 APP.setup = ()=>{
     console.log( APP.assetsPath );
 
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //SIL overriding ATON._onResize -- must be befeore Realize
     ATON._onResize = onResize
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     ATON.FE.realize(); // Realize the base front-end
 
@@ -72,6 +74,7 @@ APP.setupEvents = ()=>{
 APP.setupUI = ()=>{
     attachEventListener() 
     fillCatalogue() 
+    fillTimebar()
 };
 
 APP.changeInteractionMode = (mode)=>{

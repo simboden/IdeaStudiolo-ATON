@@ -2,7 +2,7 @@
 :root {
     --toolbar-h:   40px;
     --catalogue-w: 0px;
-    --timebar-h:   0px;
+    --timebar-h:   300px;
     --lighting-h:  0px;
 }
 
@@ -136,3 +136,38 @@
     padding-bottom  : 5px;
     font-style      : italic;
 }
+
+/* ==== timebar ==== */
+
+.vis-item {
+    color:white;
+    border-color: rgb(180,180,180);
+    border-width: 1px;
+    background-color: rgb(180,180,180);
+  }
+  .vis-time-axis .vis-text {
+    color: white;
+  }
+  .vis-timeline {
+    border: 0px solid #6c757d;
+    border-radius: 4px;
+  }
+  .vis-time-axis .vis-grid.vis-minor {
+    border-width: 2px;
+    border-color: #5f5f5f;
+  }
+  .vis-time-axis .vis-grid.vis-major {
+    border-width: 2px;
+    border-color: #5f5f5f;
+  }
+  .vis-normal {
+    color:#aaa;
+  }
+  .vis-selectable {
+    color:white;
+  }
+  .vis-item.vis-point.vis-selected {
+      background-color: #808080;
+      border-radius: 4px;
+  }
+  

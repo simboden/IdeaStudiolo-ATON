@@ -15,7 +15,7 @@ const lighting_h  = 40;
 let show_toolbar    = true;
 let show_map        = false;
 let show_catalogue  = false;
-let show_timebar    = false;
+let show_timebar    = true;
 let show_lighting   = false;
 let show_annotations= false;
 let show_measure    = false;
@@ -319,3 +319,156 @@ function fillCatalogue() {
         }
     })
 }
+
+//==TIMEBAR===========================================================
+
+/*
+var timebar_items = new vis.DataSet([
+    { id:'back1', content:'first period',       start:'1497-01-01', end: '1520-01-01', type:'background',   style:'z-index:0; background-color:rgb(60,60,60); z-index:0; color:rgb(200,200,200);' },
+    { id:'back2', content:'',                   start:'1520-01-01', end: '1522-01-10', type:'background',   style:'z-index:0; background:linear-gradient(90deg, rgb(60,60,60) 10%, rgb(90,90,90) 90%);' },
+    { id:'back3', content:'second period',      start:'1522-01-01', end: hide_start,   type:'background',   style:'z-index:0; background-color:rgb(90,90,90); z-index:0; color:rgb(200,200,200);' },
+  //{ id:0,       content:'today',            start:date_today,                      type:'point',        style:'z-index:0; background-color:pink;' },
+    {id: 1,  type:'point', start: '1519-01-01', content: 'Atropos',                                           selectable:false,   className:'vis-normal'      },
+    {id: 2,  type:'point', start: '1520-01-01', content: 'Head of Bacchus',                                   selectable:true,    className:'vis-selectable'  },
+    {id: 3,  type:'point', start: '1523-01-01', content: 'Proserpina in Hades',                               selectable:true,    className:'vis-selectable'  },
+    {id: 4,  type:'point', start: '1503-01-01', content: 'Battle Between Love and Chastity',                  selectable:true,    className:'vis-selectable'  },
+    {id: 5,  type:'point', start: '1500-01-01', content: 'Wooden candelabras (between the painting spaces)',  selectable:false,   className:'vis-normal'      },
+    {id: 6,  type:'point', start: '1507-01-01', content: 'The Reign of Comus',                                selectable:true,    className:'vis-selectable'  },
+    {id: 7,  type:'point', start: '1504-01-01', content: 'Coronation of a Woman Poet',                        selectable:true,    className:'vis-selectable'  },
+    {id: 8,  type:'point', start: '1522-01-01', content: 'Door from studiolo to grotta',                      selectable:false,   className:'vis-normal'      },
+    {id: 9,  type:'point', start: '1500-01-01', content: 'Door from grotta to studiolo',                      selectable:false,   className:'vis-normal'      },
+    {id: 10, type:'point', start: '1522-01-01', content: 'Grotta main space floor',                           selectable:false,   className:'vis-normal'      },
+    {id: 11, type:'point', start: '1519-01-01', content: 'Grotta main space south wall',                      selectable:false,   className:'vis-normal'      },
+    {id: 12, type:'point', start: '1522-01-01', content: 'Grotta ceiling',                                    selectable:false,   className:'vis-normal'      },
+    {id: 13, type:'point', start: '1519-01-01', content: 'Hercules &amp; Antaeus',                            selectable:false,   className:'vis-normal'      },
+    {id: 14, type:'point', start: '1519-01-01', content: 'Hercules with Mace',                                selectable:true,    className:'vis-selectable'  },
+    {id: 15, type:'point', start: '1506-01-01', content: 'Cityscape triptych left',                           selectable:true,    className:'vis-selectable'  },
+    {id: 16, type:'point', start: '1506-01-01', content: 'Cityscape triptych middle',                         selectable:true,    className:'vis-selectable'  },
+    {id: 17, type:'point', start: '1506-01-01', content: 'Cityscape triptych right',                          selectable:true,    className:'vis-selectable'  },
+    {id: 18, type:'point', start: '1506-01-01', content: 'Music triptych Ockeghem',                           selectable:true,    className:'vis-selectable'  },
+    {id: 19, type:'point', start: '1505-01-01', content: 'Portrait medallion of Isabella d&#39;Este',         selectable:true,    className:'vis-selectable'  },
+    {id: 20, type:'point', start: '1497-01-01', content: 'Mars &amp; Venus / Parnassus',                      selectable:true,    className:'vis-selectable'  },
+    {id: 21, type:'point', start: '1519-01-01', content: 'Studiolo ceiling',                                  selectable:false,   className:'vis-normal'      },
+    {id: 22, type:'point', start: '1519-01-01', content: 'Studiolo floor',                                    selectable:false,   className:'vis-normal'      },
+    {id: 23, type:'point', start: '1497-01-01', content: 'Triumph of the Virtues',                            selectable:true,    className:'vis-selectable'  },
+    {id: 24, type:'point', start: '1510-01-01', content: 'Venus Felix',                                       selectable:true,    className:'vis-selectable'  },
+    {id: 25, type:'point', start: '1528-01-01', content: 'Allegory of the Passions (Allegory of Vices)',      selectable:true,    className:'vis-selectable'  },
+    {id: 26, type:'point', start: '1528-01-01', content: 'Allegory of Philosophy (Allegory of Virtue)',       selectable:true,    className:'vis-selectable'  },
+    {id: 27, type:'point', start: '1522-01-01', content: 'Panel over the window embrasure of the Grotta',     selectable:false,   className:'vis-normal'      },
+]);
+*/
+
+function fillTimebar() {
+
+    
+
+    const date_start   = '1496-01-01';
+    const date_end     = '2020-12-01';
+    const hide_start   = '1535-01-01';
+    const hide_end     = '2023-01-01';
+    const date_today   = '2023-01-01';//new Date();
+    const current_year = 2023;
+    //const selected_timebar_item = null;
+    //const selected_timebar_items = null;
+
+    let timebar_items = [
+        { id:'back1', content:'first period',       start:'1497-01-01', end: '1520-01-01', type:'background',   style:'z-index:0; background-color:rgb(60,60,60); z-index:0; color:rgb(200,200,200);' },
+        { id:'back2', content:'',                   start:'1520-01-01', end: '1522-01-10', type:'background',   style:'z-index:0; background:linear-gradient(90deg, rgb(60,60,60) 10%, rgb(90,90,90) 90%);' },
+        { id:'back3', content:'second period',      start:'1522-01-01', end: hide_start,   type:'background',   style:'z-index:0; background-color:rgb(90,90,90); z-index:0; color:rgb(200,200,200);' },
+        //{ id:0,       content:'today',            start:date_today,                      type:'point',        style:'z-index:0; background-color:pink;' },
+    ]
+
+    Artworks.forEach( a => {
+        if( a.aq_date ) {
+            
+            // '1500-1502' --> '155-01-01'
+            let date = a.aq_date
+            if ( date == 'Early 1500s' ) d ='1500'
+            date = date.split('-')[0].trim() + '-01-01'   
+
+            timebar_items.push({
+                id         : timebar_items.length,
+                type       : 'point',
+                start      : date,
+                content    : a.fullname,
+                selectable : a.asset_s.length ? true : false,
+                className  : a.asset_s.length ? 'vis-selectable' : 'vis-normal'
+            })
+        }
+    })
+
+    // Configuration for the Timeline
+    const options = { 
+        height:'260px',
+        cluster:false, 
+        start: date_start, 
+        end: date_end, 
+        min: date_start, 
+        max: date_end, 
+        zoomMax: (2022-1496) * 365 * 24 * 3600 * 1000, // milliseconds
+        zoomMin: 2592000000,  // milliseconds
+        maxMinorChars:5,
+        margin:0,
+    
+        hiddenDates: { start: hide_start, end:hide_end },
+        showCurrentTime:false,
+    
+        type:'point',
+        showMajorLabels: false
+    };
+    // Create the Timeline
+    const timeline_el = document.getElementById('timebar-div');
+    const items = new vis.DataSet(timebar_items)
+    const timeline = new vis.Timeline(timeline_el, items, options);
+
+
+    // insert the time-cursor   
+    timeline.addCustomTime( date_today, 'time-cursor');
+    timeline.setCustomTimeTitle('current time', 'time-cursor');
+
+    // the time-cursor can be set by dragging it
+    timeline.on('timechanged', function (event) {
+    if( event.id == 'time-cursor')
+        on_time_changed( event.time.getFullYear()+1 );// event.time is a 'Date' object
+    });
+
+    // the time-cursor can be set by by double-clicking
+    timeline.on('doubleClick', function (event) {
+    timeline.setCustomTime( event.time, 'time-cursor');
+    on_time_changed( event.time.getFullYear() ); // event.snappedTime is a 'Moment' object
+    });
+
+    // function called when the time-cursor changes
+    function on_time_changed( year )
+    {
+        console.log( 'time-cursor set to:', year);
+        current_year = year;
+        //var filter = String(year)
+        //var catalogue  = $('#catalogue-panel' )[0].contentWindow;
+        //catalogue.load( filter )
+        console.log( 'on_time_changed', year )
+    }
+
+    function set_current_year( year )
+    {
+        current_year = year;
+        var filter = String(year)
+        timeline.setCustomTime( filter + '-01-01', 'time-cursor');
+        // var catalogue  = $('#catalogue_frame' )[0].contentWindow;
+        // catalogue.load( filter );
+    }
+
+    timeline.on( 'select', function( arg )
+    {
+        if( !arg.items.length )
+            return;
+        item_id = arg.items[0];
+        artwork_name = items.get( item_id ).content;
+        console.log('selected', artwork_name );
+
+        // var catalogue  = $('#catalogue_frame' )[0].contentWindow;
+        // catalogue.load( artwork_name );
+    });
+}
+
+

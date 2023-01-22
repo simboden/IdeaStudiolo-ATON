@@ -37,6 +37,8 @@
     <!-- Vendors -->
     <script type="text/javascript" src="/vendors/vendors.min.js"></script>
     <script type="text/javascript" src="/dist/THREE.bundle.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/vis-timeline-graph2d.min.js" />
+    <script type="text/javascript"          src="js/vis-timeline-graph2d.min.js"></script>
 
     <!-- Aton -->
     <link rel="stylesheet" type="text/css" href="/res/css/aton.css">
@@ -53,16 +55,16 @@
 
     <!-- Main js entry -->
     <script type="text/javascript" src="src/main.js"></script>
-    
+
 </head>
 
 <body data-bs-theme="dark">
 
 
-    <!-- Top Toolbar -->
+    <!-- Top Toolbar ----  SIL: when is to be used ? ---->
     <div id="idTopToolbar" class="atonToolbar atonToolbar-top-left scrollableX"></div>
 
-    <!-- Main Popup -->
+    <!-- Main Popup ----  SIL: when is to be used ? ---->
     <div id="idPopup" class="atonPopupContainer" style="display:none;"></div>
 
     <!-- Loader -->
@@ -74,8 +76,6 @@
     </div>
 
 
-
-
     <!--- MENU BUTTON -->
     <div id="menu-panel" class="panel" >
         <button id="menu-btn"          type="button" class="btn btn-sm btn-primary"><img class="icon icon2" src='images/menu.svg' /></button>
@@ -83,11 +83,8 @@
 
     <!--- TOOLBAR PANEL -->
     <div id="toolbar-panel" class="panel" >
-
         <button id="menu2-btn"          type="button" class="btn btn-sm btn-dark">    <img class="icon icon2" src='images/menu.svg'   /> </button>
-
         <span class="logo" > IDEA Studiolo</span>
-
         <button id="first-person-btn"   type="button" class="btn btn-sm btn-dark"> first person </button>
         <button id="third-person-btn"   type="button" class="btn btn-sm btn-dark"> third person </button>
         <button id="map-btn"            type="button" class="btn btn-sm btn-dark"> map          </button>
@@ -99,7 +96,6 @@
         <button id="fullscreen-btn"     type="button" class="btn btn-sm btn-dark"> full screen  </button>
         <button id="help-btn"           type="button" class="btn btn-sm btn-dark"> help         </button>
         <button id="reset-btn"          type="button" class="btn btn-sm btn-dark"> reset        </button>
-
     </div>
 
     <!--- CANVAS PANEL -->
@@ -145,7 +141,7 @@
     <div id="catalogue-panel"   class="panel" hidden>catalogue</div>
 
     <!--- TIMEBAR PANEL -->
-    <div id="timebar-panel"     class="panel" hidden>timebar</div>
+    <div id="timebar-panel" class="panel" hidden><div id="timebar-div"/></div>
 
     <!--- LIGHTING PANEL -->
     <div id="lighting-panel"    class="panel" hidden >
