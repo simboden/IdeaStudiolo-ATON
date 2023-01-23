@@ -239,6 +239,8 @@ function attachEventListener() {
     onBtnClick( "help-panel"         , toggleHelp         );
     onBtnClick( "reset-btn"          , doReset            );
 
+    onBtnClick( "exit-closeup-btn"   , exitCloseupMode    );
+
     document.addEventListener('webkitfullscreenchange', fullScreenChanged );
     document.addEventListener('mozfullscreenchange',    fullScreenChanged );
     document.addEventListener('msfullscreenchange',     fullScreenChanged );
@@ -452,3 +454,15 @@ function fillTimebar() {
         // catalogue.load( artwork_name );
     });
 }
+//==INTERACTIONS======================================================
+
+function enterCloseupMode() {
+    APP.changeInteractionMode(APP.MODE_CU);
+    update_panel( 'exit-closeup-panel', true ) 
+}
+function exitCloseupMode() {
+    APP.changeInteractionMode(APP.MODE_FP);
+    update_panel( 'exit-closeup-panel', false ) 
+}
+
+

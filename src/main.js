@@ -56,7 +56,7 @@ APP.setupEventHandling = ()=>{
     ATON.on("DoubleTap", (e)=>{
         const S = ATON.getHoveredSemanticNode();
         if( S ) {
-            APP.changeInteractionMode(APP_MODE.CU)
+            enterCloseupMode();
             ATON.Nav.requestPOVbyNode(S);
         }
     });
@@ -67,7 +67,8 @@ APP.changeInteractionMode = (mode)=>{
 
     if (mode === APP.MODE_FP){
         ATON.Nav.setFirstPersonControl();
-        ATON.Nav.requestHome(APP.POV_HOME);
+        ATON.Nav.setAndRequestHomePOV(APP.POV_HOME);
+        //ATON.Nav.requestHome(APP.POV_HOME);
     }
     if (mode === APP.MODE_CU){
         ATON.Nav.setOrbitControl();
