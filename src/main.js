@@ -26,6 +26,7 @@ APP.setup = ()=>{
     //SIL overriding ATON.functions -- must be befeore Realize
     ATON._updateScreenMove = onMouseMove
     ATON._onResize         = onResize
+    ATON.FE._update        = feUpdate
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     ATON.FE.realize(); 
