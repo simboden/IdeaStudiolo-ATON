@@ -1,16 +1,12 @@
-/*
-	Studiolo App
-
-==============================================================*/
+//=======vars
 
 let APP = ATON.App.realize();
 window.APP = APP;
 
-// This is our assets root folder
-APP.assetsPath = APP.basePath + "content/";  //SIL:  APP.basePath==undefined (BF: use latest ATON version)
-//APP.assetsPath = "/a/studiolo/content/";
+// assets root folder
+APP.assetsPath = APP.basePath + "content/";
 
-// Tell ATON to look for 3D content here
+// tell ATON to look for 3D content here
 ATON.setPathCollection(APP.assetsPath);
 
 // Interaction Modes
@@ -21,11 +17,10 @@ APP.MODE_CU = 2;    // Close-up
 // POVs
 APP.POV_HOME = new ATON.POV().setPosition(-1.8,1.6,-1.0).setTarget(-1.8, 0.8, -6.8).setFOV(75.0);
 
-
-// APP.setup() is required for web-app initialization
-// You can place here UI setup (HTML), events handling, etc.
+//=======setup
 APP.setup = ()=>{
-    console.log( APP.assetsPath );
+
+    APP.currMode = APP.MODE_FP;
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //SIL overriding ATON.functions -- must be befeore Realize
@@ -33,51 +28,40 @@ APP.setup = ()=>{
     ATON._onResize         = onResize
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    ATON.FE.realize(); // Realize the base front-end
-
-	ATON.FE.addBasicLoaderEvents(); // Add basic events handling
-    APP.setupEvents();
-    
-    ATON.createSceneNode("demo").load("virtual_studiolo_boxes.glb").attachToRoot(); // SIL
+    ATON.FE.realize(); 
+	ATON.FE.addBasicLoaderEvents(); 
+    ATON.createSceneNode("demo").load("virtual_studiolo_boxes.glb").attachToRoot(); 
 
     APP.setupTriggers();
+    APP.setupEventHandling();
     
-    APP.setupUI();
-
-    APP.currMode = APP.MODE_FP;
     ATON.Nav.setFirstPersonControl();
     ATON.Nav.setAndRequestHomePOV(APP.POV_HOME);
 };
-
+//=======setupTriggers 
 APP.setupTriggers = ()=>{
     ATON.createSemanticNode("sample1").load("triggers/sample-trigger1.glb").attachToRoot();
 };
+//=======setupEventHandling
+APP.setupEventHandling = ()=>{
 
-// Here we handle events
-APP.setupEvents = ()=>{
-
-    ATON.on("AllNodeRequestsCompleted", ()=>{ 
-        // All resources loaded
+    // All resources loaded
+    ATON.on("AllNodeRequestsCompleted", ()=>{  
+        attachEventListener() 
+        fillCatalogue() 
+        fillTimebar()
     });
 
     // A sample switch to CloseUp when double-tapping on valid trigger
     ATON.on("DoubleTap", (e)=>{
-        let S = ATON.getHoveredSemanticNode();
-
-        if (S){
-            APP.changeInteractionMode(APP.MODE_CU);
+        const S = ATON.getHoveredSemanticNode();
+        if( S ) {
+            APP.changeInteractionMode(APP_MODE.CU)
             ATON.Nav.requestPOVbyNode(S);
         }
     });
 };
-
-// Setup HTML UI
-APP.setupUI = ()=>{
-    attachEventListener() 
-    fillCatalogue() 
-    fillTimebar()
-};
-
+//=======changeInteractionMode
 APP.changeInteractionMode = (mode)=>{
     if (mode === APP.currMode) return;
 
@@ -85,20 +69,17 @@ APP.changeInteractionMode = (mode)=>{
         ATON.Nav.setFirstPersonControl();
         ATON.Nav.requestHome(APP.POV_HOME);
     }
-
     if (mode === APP.MODE_CU){
         ATON.Nav.setOrbitControl();
         ATON.Nav._cOrbit.enablePan = false;
     }
-
     APP.currMode = mode;
 };
-
-/* APP.update() if you plan to use an update routine (executed continuously) */
+//=======update: called at every frame
 APP.update = ()=>{
 };
 
-// Run the App
+//=======run the ppp
 window.addEventListener('load',()=>{
     APP.run();
 });
