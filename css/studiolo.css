@@ -2,7 +2,7 @@
 :root {
     --toolbar-h:   40px;
     --catalogue-w: 0px;
-    --timebar-h:   300px;
+    --timebar-h:   0px;
     --lighting-h:  0px;
 }
 
@@ -60,11 +60,12 @@
     z-index:100; 
 }
 #timebar-panel   { 
-    background-color:#444;   
+    z---background-color:#444;   
     left:   0px;   
     top:    calc( 100% - var(--timebar-h) - var(--lighting-h) );
     width:  calc( 100% - var(--catalogue-w));
     height: var(--timebar-h);
+    font-size: 10pt;
 }
 #lighting-panel  { 
     background-color:#000; 

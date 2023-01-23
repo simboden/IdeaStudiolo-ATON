@@ -1,3 +1,43 @@
+//==ATON Override===========================================================
+
+// OVERRIDE ATON._onResize 
+function onResize() {
+
+    const c = document.getElementById('idView3D') 
+    const w = c.clientWidth
+    const h = c.clientHeight
+    console.log("on-resize ",w,h );
+
+    ATON.Nav._camera.aspect = w / h;
+    ATON.Nav._camera.updateProjectionMatrix();
+    ATON._renderer.setSize( w, h );
+
+    if (ATON.FX.composer){
+        ATON.FX.composer.setSize( w, h );
+        
+        if (ATON.FX.passes[ATON.FX.PASS_AA]){
+            let UU = ATON.FX.passes[ATON.FX.PASS_AA].material.uniforms;
+            if (UU) UU.resolution.value.set( (1/w), (1/h) );
+        }
+    }
+}
+// OVERRIDE ATON._updateScreenMove
+function onMouseMove (e) {
+    if (e.preventDefault) e.preventDefault();
+    if (ATON._bCenteredQuery) return;
+    // l'evento e' in coordinate window, va riportato in coordinate canvas
+    const c = ATON._renderer.domElement
+    const l = c.clientLeft
+    const t = c.clientTop
+    const w = c.clientWidth
+    const h = c.clientHeight
+    const x = (e.clientX - l) / w
+    const y = (e.clientY - t) / h
+    //console.log('ATON._updateScreenMove', l,t,w,h,x,y)
+    ATON._screenPointerCoords.x =  x * 2 - 1;
+	ATON._screenPointerCoords.y = -y * 2 + 1;
+};
+
 //==UI VARS===========================================================
 
 // buttons color
@@ -8,14 +48,14 @@ const blue_button_color    = "#007BFF";
 // panels dimension when shown
 const toolbar_h   = 40;
 const catalogue_w = 400;
-const timebar_h   = 300;
+const timebar_h   = 350;
 const lighting_h  = 40;
 
 // panels visibility flags
 let show_toolbar    = true;
 let show_map        = false;
 let show_catalogue  = false;
-let show_timebar    = true;
+let show_timebar    = false;
 let show_lighting   = false;
 let show_annotations= false;
 let show_measure    = false;
@@ -139,27 +179,6 @@ function doReset() {
     showHelp(false);
 }
 
-// OVERRIDE ATON._onResize 
-function onResize() {
-
-    const c = document.getElementById('idView3D') 
-    const w = c.clientWidth
-    const h = c.clientHeight
-    console.log("on-resize ",w,h );
-
-    ATON.Nav._camera.aspect = w / h;
-    ATON.Nav._camera.updateProjectionMatrix();
-    ATON._renderer.setSize( w, h );
-
-    if (ATON.FX.composer){
-        ATON.FX.composer.setSize( w, h );
-        
-        if (ATON.FX.passes[ATON.FX.PASS_AA]){
-            let UU = ATON.FX.passes[ATON.FX.PASS_AA].material.uniforms;
-            if (UU) UU.resolution.value.set( (1/w), (1/h) );
-        }
-    }
-}
 
 function toggleToolbar()    { showToolbar       ( !show_toolbar     ) }
 function toggleMap()        { showMap           ( !show_map         ) }
@@ -372,9 +391,9 @@ function fillTimebar() {
     //const selected_timebar_items = null;
 
     let timebar_items = [
-        { id:'back1', content:'first period',       start:'1497-01-01', end: '1520-01-01', type:'background',   style:'z-index:0; background-color:rgb(60,60,60); z-index:0; color:rgb(200,200,200);' },
-        { id:'back2', content:'',                   start:'1520-01-01', end: '1522-01-10', type:'background',   style:'z-index:0; background:linear-gradient(90deg, rgb(60,60,60) 10%, rgb(90,90,90) 90%);' },
-        { id:'back3', content:'second period',      start:'1522-01-01', end: hide_start,   type:'background',   style:'z-index:0; background-color:rgb(90,90,90); z-index:0; color:rgb(200,200,200);' },
+        { id:'back1', content:'first period',       start:'1497-01-01', end: '1520-01-01', type:'background',   style:'z-index:0; background-color:rgb(30,30,30); z-index:0; color:rgb(200,200,200);' },
+        { id:'back2', content:'',                   start:'1520-01-01', end: '1522-01-10', type:'background',   style:'z-index:0; background:linear-gradient(90deg, rgb(30,30,30) 10%, rgb(60,60,60) 90%);' },
+        { id:'back3', content:'second period',      start:'1522-01-01', end: hide_start,   type:'background',   style:'z-index:0; background-color:rgb(60,60,60); z-index:0; color:rgb(200,200,200);' },
         //{ id:0,       content:'today',            start:date_today,                      type:'point',        style:'z-index:0; background-color:pink;' },
     ]
 
@@ -382,24 +401,24 @@ function fillTimebar() {
         if( a.aq_date ) {
             
             // '1500-1502' --> '155-01-01'
-            let date = a.aq_date
-            if ( date == 'Early 1500s' ) d ='1500'
-            date = date.split('-')[0].trim() + '-01-01'   
+            const date = a.aq_date.split('-')[0].trim() + '-01-01'   
 
-            timebar_items.push({
+            const item = {
                 id         : timebar_items.length,
                 type       : 'point',
                 start      : date,
                 content    : a.fullname,
                 selectable : a.asset_s.length ? true : false,
                 className  : a.asset_s.length ? 'vis-selectable' : 'vis-normal'
-            })
+            }
+            //console.log('item', item )
+            timebar_items.push(item)
         }
     })
 
     // Configuration for the Timeline
     const options = { 
-        height:'260px',
+        height:'350px',
         cluster:false, 
         start: date_start, 
         end: date_end, 
@@ -446,7 +465,6 @@ function fillTimebar() {
         //var filter = String(year)
         //var catalogue  = $('#catalogue-panel' )[0].contentWindow;
         //catalogue.load( filter )
-        console.log( 'on_time_changed', year )
     }
 
     function set_current_year( year )
@@ -464,7 +482,7 @@ function fillTimebar() {
             return;
         item_id = arg.items[0];
         artwork_name = items.get( item_id ).content;
-        console.log('selected', artwork_name );
+        console.log('timeline.selected', artwork_name );
 
         // var catalogue  = $('#catalogue_frame' )[0].contentWindow;
         // catalogue.load( artwork_name );

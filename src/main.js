@@ -28,8 +28,9 @@ APP.setup = ()=>{
     console.log( APP.assetsPath );
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //SIL overriding ATON._onResize -- must be befeore Realize
-    ATON._onResize = onResize
+    //SIL overriding ATON.functions -- must be befeore Realize
+    ATON._updateScreenMove = onMouseMove
+    ATON._onResize         = onResize
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     ATON.FE.realize(); // Realize the base front-end
