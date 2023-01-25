@@ -42,7 +42,7 @@ function onMouseMove (e) {
 
     ATON._screenPointerCoords.x =     x*2 - 1;   // valori in -1 ..+1
     ATON._screenPointerCoords.y =  1 -y*2;       // valori in -1 ..+1 invertiti
-    
+
     //console.log( '---IDEA._updateScreenMove', e.x, e.y, e, t)
 }
 
@@ -531,4 +531,24 @@ function exitCloseupMode() {
     update_panel( 'exit-closeup-panel', false ) 
 }
 
+function updateMap()
+{
+    if( !show_map) return;
+    const map_cursor = $('#map_cursor')[0]
+    if( !map_cursor ) return;
 
+    const pos = ATON.Nav.getCurrentEyeLocation()
+    const x =  pos.x;
+    const y = -pos.z;
+
+    const dir = ATON.Nav.getCurrentDirection()
+    const dx = - dir.x;
+    const dy =   dir.z;
+    const a  = Math.atan2( dy, dx ) * 180 / 3.1415;
+
+    const t = map_cursor.transform.baseVal[0]; // transform.traslation
+    const r = map_cursor.transform.baseVal[1]; // transform.rotation
+
+    t.setTranslate( x, y, 0 );
+    r.setRotate( a +180, 0, 0 );
+}

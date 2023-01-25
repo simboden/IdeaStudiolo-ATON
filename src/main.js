@@ -79,6 +79,7 @@ APP.changeInteractionMode = (mode)=>{
 };
 //=======update: called at every frame
 APP.update = ()=>{
+    updateMap()
 };
 
 //=======run the ppp
