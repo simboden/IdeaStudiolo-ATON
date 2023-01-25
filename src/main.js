@@ -31,17 +31,67 @@ APP.setup = ()=>{
 
     ATON.FE.realize(); 
 	ATON.FE.addBasicLoaderEvents(); 
-    ATON.createSceneNode("demo").load("virtual_studiolo_boxes.glb").attachToRoot(); 
+    //ATON.createSceneNode("demo").load("virtual_studiolo_boxes.glb").attachToRoot(); 
 
-    APP.setupTriggers();
+    // load models
+    const assets = [
+        'muri',
+        'picture_1',
+        'picture_2',
+        'picture_3',
+        'picture_4',
+        'picture_5',
+        'picture_6',
+        'picture_7',
+        'bassorilievo',
+        'bacco',
+        'ercole',
+        'venere',
+        'medaglia',
+        'sportello',
+        'apri_sportello',
+        'chiudi_sportello',
+        'mensola',
+        'mensole',
+        'misure'
+    ]
+    assets.forEach( name => {
+        ATON.createSceneNode(name).load( name + ".glb").attachToRoot();     
+    })
+
+    // load triggers
+    const triggers = [
+        'picture_1',
+        'picture_2',
+        'picture_3',
+        'picture_4',
+        'picture_5',
+        'picture_6',
+        'picture_7',
+        'bassorilievo',
+        'bacco',
+        'ercole',
+        'venere',
+        'medaglia',
+        'apri_sportello',
+        'chiudi_sportello',
+    ]
+    triggers.forEach( name => {
+        ATON.createSemanticNode(name).load( name + "_t.glb").attachToRoot();     
+    })
+
+    ATON.getSceneNode('misure').visible = false
+    ATON.getSceneNode('sportello').position.x = -7.2845
+    ATON.getSceneNode('sportello').position.y =  1.0251
+    ATON.getSceneNode('sportello').position.z = -0.6976
+    ATON.getSceneNode('apri_sportello').visible = true
+    ATON.getSceneNode('chiudi_sportello').visible = false
+    ATON.getSemanticNode('chiudi_sportello').visible = false
+
     APP.setupEventHandling();
     
     ATON.Nav.setFirstPersonControl();
     ATON.Nav.setAndRequestHomePOV(APP.POV_HOME);
-};
-//=======setupTriggers 
-APP.setupTriggers = ()=>{
-    ATON.createSemanticNode("sample1").load("triggers/sample-trigger1.glb").attachToRoot();
 };
 //=======setupEventHandling
 APP.setupEventHandling = ()=>{
@@ -57,8 +107,17 @@ APP.setupEventHandling = ()=>{
     ATON.on("DoubleTap", (e)=>{
         const S = ATON.getHoveredSemanticNode();
         if( S ) {
-            enterCloseupMode();
-            ATON.Nav.requestPOVbyNode(S);
+
+            if( S.name == 'apri_sportello') { 
+                apri_sportello() 
+            } else { 
+                if ( S.name == 'chiudi_sportello') { 
+                    chiudi_sportello() 
+                } else { 
+                    enterCloseupMode();
+                    ATON.Nav.requestPOVbyNode(S);
+                }
+            }
         }
     });
 };

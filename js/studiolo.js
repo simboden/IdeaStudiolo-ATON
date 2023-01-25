@@ -198,6 +198,7 @@ function showAnnotations( show ) {
 function showMeasure( show ) {
     show_measure = show;
     update_button("measure-btn", show)
+    ATON.getSceneNode("misure").visible = show
 }
 function showHelp( show ) {
     show_help = show;
@@ -244,6 +245,9 @@ function doReset() {
     showMeasure(false);
     showHelp(false);
     ATON.Nav.setAndRequestHomePOV(APP.POV_HOME);
+
+    if( ATON.getSceneNode("chiudi_sportello").visible )
+        chiudi_sportello()
 }
 
 
@@ -533,7 +537,6 @@ function exitCloseupMode() {
 
 function updateMap()
 {
-    if( !show_map) return;
     const map_cursor = $('#map_cursor')[0]
     if( !map_cursor ) return;
 
@@ -551,4 +554,32 @@ function updateMap()
 
     t.setTranslate( x, y, 0 );
     r.setRotate( a +180, 0, 0 );
+}
+function apri_sportello() {
+    const sportello = ATON.getSceneNode('sportello')
+    ATON.getSceneNode('apri_sportello').visible = false
+    ATON.getSemanticNode('apri_sportello').disablePicking();
+    gsap.to( sportello.rotation, {
+        duration: 1, 
+        y: Math.PI * 0.5, 
+        ease: "power2",
+        onComplete: () => {
+            ATON.getSceneNode('chiudi_sportello').visible = true
+            ATON.getSemanticNode('chiudi_sportello').enablePicking();
+        }
+    })
+}
+function chiudi_sportello() {
+    const sportello = ATON.getSceneNode('sportello')
+    ATON.getSceneNode('chiudi_sportello').visible = false
+    ATON.getSemanticNode('chiudi_sportello').disablePicking();
+    gsap.to( sportello.rotation, {
+        duration: 1, 
+        y: 0, 
+        ease: "power2",
+        onComplete: () => {
+            ATON.getSceneNode('apri_sportello').visible = true
+            ATON.getSemanticNode('apri_sportello').enablePicking();
+        }
+    })
 }
